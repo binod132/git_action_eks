@@ -9,7 +9,8 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"
+  version = "~> 4.0"
+  region  = "us-east-1"
 }
 
   required_version = ">=0.14.9"
