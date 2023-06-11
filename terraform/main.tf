@@ -8,9 +8,9 @@ terraform {
 
   required_version = ">=0.14.9"
      backend "s3" {
-       bucket = "gitacton"
+       bucket = "gitacton1"
        key    = "[Remote_State_S3_Bucket_Key]"
-       region = "east-us-1"
+       region = "us-east-1"
    }
 
 }
@@ -21,7 +21,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "s3Bucket" {
-     bucket = "[BUCKET_NAME_HERE]"
+     bucket = "gitacton1"
      acl       = "public-read"
 
      policy  = <<EOF
