@@ -10,7 +10,7 @@ locals {
 }
 resource "aws_s3_bucket" "s3Bucket" {
      bucket = "gitacton1"
-     acl       = "public-read"
+     acl       = "READ_ACP"
 
      policy  = <<EOF
 {
