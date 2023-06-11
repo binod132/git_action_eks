@@ -21,8 +21,3 @@ module "s3_bucket" {
     enabled = true
   }
 }
-
-   website {
-       index_document = "index.html"
-   }
-}
