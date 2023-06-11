@@ -10,7 +10,8 @@ locals {
 }
 resource "aws_s3_bucket" "s3Bucket" {
      bucket = "gitacton1"
-     acl       = "public-read"
+    control_object_ownership = true
+    object_ownership = "ObjectWriter"
 
      policy  = <<EOF
 {
