@@ -8,12 +8,13 @@ locals {
   name   = basename(path.cwd)
   region = "us-east-1"
 }
-module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "gitacton"
-  acl    = "public"
+variable "bucket_name" {
+ default = "gitaction"
+}
 
-  control_object_ownership = true
-  object_ownership         = "ObjectWriter"
+module "aws_s3_bucket" {
+ source  = "terraform-aws-modules/s3-bucket/aws"
+ version = "2.14.1"
+ bucket  = var.bucket_name
 }
