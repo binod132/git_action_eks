@@ -7,14 +7,12 @@ terraform {
   }
 }
 
-# Configure the AWS Provider
 provider "aws" {
   version = "~> 4.0"
   region  = "us-east-1"
 }
 
-  required_version = ">=0.14.9"
-     backend "s3" {
+backend "s3" {
        bucket = "gitacton1"
        key    = "[Remote_State_S3_Bucket_Key]"
        region = "us-east-1"
