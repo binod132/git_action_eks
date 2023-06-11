@@ -1,29 +1,12 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-    }
-  }
-}
-
 provider "aws" {
-  version = "~> 4.0"
-  region  = "us-east-1"
+  region = local.region
 }
 
-backend "s3" {
-       bucket = "gitacton1"
-       key    = "[Remote_State_S3_Bucket_Key]"
-       region = "us-east-1"
-   }
+data "aws_availability_zones" "available" {}
 
-}
-
-provider "aws" {
-  version = "~>3.0"
-  region  = "east-us-1"
-}
-
+locals {
+  name   = basename(path.cwd)
+  region = "us-east-1"
 resource "aws_s3_bucket" "s3Bucket" {
      bucket = "gitacton1"
      acl       = "public-read"
