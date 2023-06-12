@@ -1,21 +1,21 @@
 name: Deploy Infrastructure
 
 on:
-workflow_dispatch:
+  workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
       tfpath:
         description: 'TF File Path'     
         required: false
         default: 'terraform'
-push:
+  push:
   branches:
     - master
 
-jobs:
-  tf_fmt:
-    name: Deploy Site
-    runs-on: ubuntu-latest
+  jobs:
+    tf_fmt:
+      name: Deploy Site
+      runs-on: ubuntu-latest
 
     steps:
     - name: Checkout tf code in runner environment
