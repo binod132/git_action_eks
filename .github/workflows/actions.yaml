@@ -1,9 +1,16 @@
 name: Deploy Infrastructure
 
 on:
-  push:
-    branches:
-      - master
+workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      tfpath:
+        description: 'TF File Path'     
+        required: false
+        default: 'terraform'
+push:
+  branches:
+    - master
 
 jobs:
   tf_fmt:
