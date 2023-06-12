@@ -12,7 +12,7 @@ jobs:
     steps:
 
     - name: Checkout tf code in runner environment
-      uses: actions/checkout@v3.5.2
+      uses: actions/checkout@v3
 
     - name: Configure AWS Credentials Action For GitHub Actions
       uses: aws-actions/configure-aws-credentials@v2
