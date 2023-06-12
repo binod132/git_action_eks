@@ -6,8 +6,8 @@ on:
       - master
 
   jobs:
-    tf_fmt:
-      name: Deploy Site
+    tf_code_check:
+      name: Terraform Validation and Build
       runs-on: ubuntu-latest
 
     steps:
