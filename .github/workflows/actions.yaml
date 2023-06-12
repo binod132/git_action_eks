@@ -6,9 +6,9 @@ on:
       - master
 
 jobs:
-    tf_code_check:
-      name: Terraform Validation and Build
-      runs-on: ubuntu-latest
+  tf_code_check:
+    name: Terraform Validation and Build
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout tf code in runner environment
