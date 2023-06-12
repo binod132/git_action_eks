@@ -2,16 +2,22 @@ provider "aws" {
   region = local.region
 }
 
-data "aws_availability_zones" "available" {}
-
 locals {
   name   = basename(path.cwd)
   region = "us-east-1"
 }
 
 
-module "s3-bucket" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  bucket = "gitactions"
-  version = "3.13.0"
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket = "my-s3-bucket"
+  acl    = "private"
+
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
+  versioning = {
+    enabled = true
+  }
 }
