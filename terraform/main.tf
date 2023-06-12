@@ -12,6 +12,6 @@ locals {
 
 module "s3-bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  bucket = "gitaction"
+  bucket = "gitaction1"
   version = "3.13.0"
 }
