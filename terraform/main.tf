@@ -88,7 +88,7 @@ resource "aws_iam_role" "workernodes" {
   cluster_name  = aws_eks_cluster.gitaction.name
   node_group_name = "gitactionworker"
   node_role_arn  = aws_iam_role.workernodes.arn
-  subnet_ids   = [var.subnet_id_1, var.subnet_id_2]
+  subnet_ids = ["subnet-099e64ac3f6e73e86", "subnet-0a6694c99d33aad05"]
   instance_types = ["t3.xlarge"]
  
   scaling_config {
