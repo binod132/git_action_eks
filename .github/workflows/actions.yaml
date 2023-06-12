@@ -6,8 +6,9 @@ on:
       - master
 
 jobs:
-  My_first_Job:
-    name: Deploy EKS
+  tf_fmt:
+    name: Deploy Site
+    runs-on: ubuntu-latest
     steps:
 
     - name: Checkout Repo
