@@ -1,17 +1,26 @@
-name: Deploy Infrastructure
+name: Terraform AWS Workflow
 
 on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      tfpath:
+        description: 'TF File Path'     
+        required: false
+        default: 'aws_samples/create_ec2'
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  tf_fmt:
-    name: Deploy Site
+  tf_code_check:
+    name: Terraform Validation and Build
     runs-on: ubuntu-latest
-    steps:
 
-steps:
+    if:  ${{ inputs.tfpath }} 
+
+    steps:
     - name: Checkout tf code in runner environment
       uses: actions/checkout@v3.5.2
 
@@ -20,7 +29,7 @@ steps:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
+        aws-region: us-east-1
 
     - name: Setup Terraform CLI
       uses: hashicorp/setup-terraform@v2.0.2
