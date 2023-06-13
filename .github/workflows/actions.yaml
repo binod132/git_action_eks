@@ -19,14 +19,16 @@ jobs:
 
       - name: Checkout Repo
         uses: actions/checkout@v3
-
       - name: Login to EKS
-      - run: |
+        run: |
           aws eks update-kubeconfig --name gitaction
-      - run: |
+      - name: fetch gatekeeper image
+        run: |
           kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.8/deploy/gatekeeper.yaml
-      - run: |
+      - name: check pods
+        run: |
           kubectl get pods -n gatekeeper-system
-      - run: |
+      - name: check logs
+        run: |
           kubectl logs -l control-plane=audit-controller -n gatekeeper-system
           kubectl logs -l control-plane=controller-manager -n gatekeeper-system
