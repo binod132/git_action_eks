@@ -1,4 +1,4 @@
-name: Deploy Infrastructure
+name: name: GateKeeper
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  TF_ACTION_WORKING_DIR: 'terraform'
+  #TF_ACTION_WORKING_DIR: 'gatekeeper'
   AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  tf_fmt:
-    name: Deploy Site
+  build:
+    name: Deploy Gatekeeper
     runs-on: ubuntu-latest
 
     steps:
@@ -20,11 +20,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Terraform Init
-        uses: hashicorp/terraform-github-actions/init@v0.4.0
-
-      - name: Terraform Validate
-        uses: hashicorp/terraform-github-actions/validate@v0.3.7
-
-      - name: Terraform Apply
-        uses: hashicorp/terraform-github-actions/apply@v0.4.0
+      - name: Login to EKS
+      - run: |
+          aws eks update-kubeconfig --name gitaction
+      - run: |
+          kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.8/deploy/gatekeeper.yaml
+      - run: |
+          kubectl get pods -n gatekeeper-system
+      - run: |
+          kubectl logs -l control-plane=audit-controller -n gatekeeper-system
+          kubectl logs -l control-plane=controller-manager -n gatekeeper-system
