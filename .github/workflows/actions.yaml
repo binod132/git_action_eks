@@ -1,4 +1,4 @@
-name: GateKeeper
+name: GateKeeper Policy
 
 on:
   push:
