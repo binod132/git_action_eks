@@ -23,10 +23,10 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: us-west-1
-      - name: Config Kubectl
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      #- name: Config Kubectl
+      #  uses: actions-hub/kubectl@master
+      #  env:
+      #    KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       - name: Login to EKS
         run: |
           aws eks update-kubeconfig --name gitaction
