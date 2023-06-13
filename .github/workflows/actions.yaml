@@ -1,4 +1,4 @@
-name: name: GateKeeper
+name: GateKeeper
 
 on:
   push:
